@@ -2,7 +2,6 @@ import { supabase } from "@/lib/supabase/browser-client"
 import { TablesInsert, TablesUpdate } from "@/supabase/types"
 import {
   calculateMessageCredits,
-  deductCredits,
   deductCreditsForMessages
 } from "@/lib/supabase/server-chat-tokens"
 
