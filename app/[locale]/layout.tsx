@@ -6,16 +6,18 @@ import initTranslations from "@/lib/i18n"
 import { Database } from "@/supabase/types"
 import { createServerClient } from "@supabase/ssr"
 import { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+// import { Inter } from "next/font/google"
+import { Sofia_Sans } from "next/font/google"
 import { cookies } from "next/headers"
 import { ReactNode } from "react"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
-const APP_NAME = "Chatbot UI"
-const APP_DEFAULT_TITLE = "Chatbot UI"
-const APP_TITLE_TEMPLATE = "%s - Chatbot UI"
-const APP_DESCRIPTION = "Chabot UI PWA!"
+// const inter = Inter({ subsets: ["latin"] })
+const inter = Sofia_Sans({ subsets: ["latin"] })
+const APP_NAME = "Chatur AI"
+const APP_DEFAULT_TITLE = "Chatur AI"
+const APP_TITLE_TEMPLATE = "%s - Chatur AI"
+const APP_DESCRIPTION = "Chatur AI PWA!"
 
 interface RootLayoutProps {
   children: ReactNode

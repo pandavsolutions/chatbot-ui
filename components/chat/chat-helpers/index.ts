@@ -436,6 +436,8 @@ export const handleCreateMessages = async (
       content: generatedText
     })
 
+    console.log(generatedText)
+
     chatMessages[chatMessages.length - 1].message = updatedMessage
 
     finalChatMessages = [...chatMessages]
@@ -446,6 +448,8 @@ export const handleCreateMessages = async (
       finalUserMessage,
       finalAssistantMessage
     ])
+
+    console.log(createdMessages)
 
     // Upload each image (stored in newMessageImages) for the user message to message_images bucket
     const uploadPromises = newMessageImages

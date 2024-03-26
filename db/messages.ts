@@ -1,5 +1,10 @@
 import { supabase } from "@/lib/supabase/browser-client"
 import { TablesInsert, TablesUpdate } from "@/supabase/types"
+import {
+  calculateMessageCredits,
+  deductCredits,
+  deductCreditsForMessages
+} from "@/lib/supabase/server-chat-tokens"
 
 export const getMessageById = async (messageId: string) => {
   const { data: message } = await supabase
@@ -39,6 +44,13 @@ export const createMessage = async (message: TablesInsert<"messages">) => {
     throw new Error(error.message)
   }
 
+  const credits = await calculateMessageCredits([createdMessage!])
+  const { data: new_credits } = await deductCreditsForMessages(
+    createdMessage.chat_id,
+    createdMessage.id,
+    Math.ceil(credits)
+  )
+
   return createdMessage
 }
 
@@ -51,6 +63,17 @@ export const createMessages = async (messages: TablesInsert<"messages">[]) => {
   if (error) {
     throw new Error(error.message)
   }
+
+  const credits = await calculateMessageCredits(createdMessages!)
+
+  // TODO - Review this. This assumes that the chat_id and message_id are the same for all messages
+  let chat_id = createdMessages![0].chat_id
+  let message_id = createdMessages![0].id
+  const { data: new_credits } = await deductCreditsForMessages(
+    chat_id,
+    message_id,
+    Math.ceil(credits)
+  )
 
   return createdMessages
 }
@@ -69,6 +92,13 @@ export const updateMessage = async (
   if (error) {
     throw new Error(error.message)
   }
+
+  const credits = await calculateMessageCredits([updatedMessage!])
+  const { data: new_credits } = await deductCreditsForMessages(
+    updatedMessage.chat_id,
+    updatedMessage.id,
+    Math.ceil(credits)
+  )
 
   return updatedMessage
 }

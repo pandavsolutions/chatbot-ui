@@ -16,11 +16,12 @@ import { OpenRouterLLM } from "@/types"
 import {
   IconCircleCheckFilled,
   IconCircleXFilled,
-  IconFileDownload,
+  // IconFileDownload,
   IconLoader2,
-  IconLogout,
-  IconUser
+  IconLogout
+  // IconUser
 } from "@tabler/icons-react"
+import { FcPortraitMode, FcDownload } from "react-icons/fc"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { FC, useCallback, useContext, useRef, useState } from "react"
@@ -306,7 +307,8 @@ export const ProfileSettings: FC<ProfileSettingsProps> = ({}) => {
           />
         ) : (
           <Button size="icon" variant="ghost">
-            <IconUser size={SIDEBAR_ICON_SIZE} />
+            <FcPortraitMode size={SIDEBAR_ICON_SIZE} />
+            {/* <IconUser size={SIDEBAR_ICON_SIZE} /> */}
           </Button>
         )}
       </SheetTrigger>
@@ -731,20 +733,21 @@ export const ProfileSettings: FC<ProfileSettingsProps> = ({}) => {
           <div className="flex items-center space-x-1">
             <ThemeSwitcher />
 
-            <WithTooltip
+            {/* <WithTooltip
               display={
                 <div>
                   Download Chatbot UI 1.0 data as JSON. Import coming soon!
                 </div>
               }
               trigger={
-                <IconFileDownload
+                // <IconFileDownload
+                <FcDownload
                   className="cursor-pointer hover:opacity-50"
                   size={32}
                   onClick={exportLocalStorageAsJSON}
                 />
               }
-            />
+            /> */}
           </div>
 
           <div className="ml-auto space-x-2">

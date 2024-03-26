@@ -10,6 +10,7 @@ import { ChatbotUIContext } from "@/context/context"
 import { createWorkspace } from "@/db/workspaces"
 import useHotkey from "@/lib/hooks/use-hotkey"
 import { IconBuilding, IconHome, IconPlus } from "@tabler/icons-react"
+import { FcHome, FcBriefcase } from "react-icons/fc"
 import { ChevronsUpDown } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
@@ -98,7 +99,8 @@ export const WorkspaceSwitcher: FC<WorkspaceSwitcherProps> = ({}) => {
       ? ""
       : ""
 
-  const IconComponent = selectedWorkspace?.is_home ? IconHome : IconBuilding
+  const IconComponent = selectedWorkspace?.is_home ? FcHome : FcBriefcase
+  // const IconComponent = selectedWorkspace?.is_home ? IconHome : IconBuilding
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -173,7 +175,8 @@ export const WorkspaceSwitcher: FC<WorkspaceSwitcherProps> = ({}) => {
                         alt={workspace.name}
                       />
                     ) : (
-                      <IconHome className="mr-3" size={28} />
+                      <FcHome className="mr-3" size={28} />
+                      // <IconHome className="mr-3" size={28} />
                     )}
 
                     <div className="text-lg font-semibold">
@@ -212,7 +215,8 @@ export const WorkspaceSwitcher: FC<WorkspaceSwitcherProps> = ({}) => {
                         alt={workspace.name}
                       />
                     ) : (
-                      <IconBuilding className="mr-3" size={28} />
+                      <FcBriefcase className="mr-3" size={28} />
+                      // <IconBuilding className="mr-3" size={28} />
                     )}
 
                     <div className="text-lg font-semibold">
